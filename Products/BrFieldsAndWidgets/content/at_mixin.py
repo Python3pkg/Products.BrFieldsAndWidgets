@@ -17,8 +17,8 @@ schema = atapi.Schema((
         widget=atapi.StringWidget(
             size="30",
             visible={'view': 'invisible', 'edit': 'visible'},
-            label=_(u'Logradouro'),
-            description=_(u'Exemplo: Rua Mourato Coelho'),
+            label=_('Logradouro'),
+            description=_('Exemplo: Rua Mourato Coelho'),
         ),
         required=True,
         schemata="Address"
@@ -29,8 +29,8 @@ schema = atapi.Schema((
         widget=atapi.StringWidget(
             size="7",
             visible={'view': 'invisible', 'edit': 'visible'},
-            label=_(u'Número'),
-            description=_(u'Exemplo: 12'),
+            label=_('Número'),
+            description=_('Exemplo: 12'),
         ),
         required=True,
         schemata="Address"
@@ -40,7 +40,7 @@ schema = atapi.Schema((
         name='complemento',
         widget=atapi.StringWidget(
             visible={'view': 'invisible', 'edit': 'visible'},
-            label=_(u'Complemento'),
+            label=_('Complemento'),
         ),
         schemata="Address"
     ),
@@ -50,8 +50,8 @@ schema = atapi.Schema((
         widget=atapi.StringWidget(
             visible={'view': 'invisible', 'edit': 'visible'},
             size="30",
-            label=_(u'Bairro'),
-            description=_(u'Exemplo: Pinheiros'),
+            label=_('Bairro'),
+            description=_('Exemplo: Pinheiros'),
         ),
         required=False,
         schemata="Address",
@@ -62,8 +62,8 @@ schema = atapi.Schema((
         required=1,
         widget=CEPWidget(
                         visible={'view': 'invisible', 'edit': 'visible'},
-                        label=_(u'CEP'),
-                        description=_(u'Informe o CEP.'),
+                        label=_('CEP'),
+                        description=_('Informe o CEP.'),
                         ),
         schemata="Address"
     ),
@@ -72,8 +72,8 @@ schema = atapi.Schema((
         name='cidade',
         widget=atapi.StringWidget(
             visible={'view': 'invisible', 'edit': 'visible'},
-            label=_(u'Cidade'),
-            description=_(u'Informe sua cidade.'),
+            label=_('Cidade'),
+            description=_('Informe sua cidade.'),
         ),
         required=True,
         schemata="Address"
@@ -85,8 +85,8 @@ schema = atapi.Schema((
         (
             visible={'view': 'invisible', 'edit': 'visible'},
             size=1,
-            label=_(u'UF'),
-            description=_(u'Informe o seu estado.'),
+            label=_('UF'),
+            description=_('Informe o seu estado.'),
         ),
         required=True,
         schemata="Address",
@@ -99,7 +99,7 @@ schema = atapi.Schema((
         expression='context.fmt_endereco()',
         widget=atapi.ComputedWidget(
             visible={'view': 'visible', 'edit': 'invisible'},
-            label=_(u'Endereço'),
+            label=_('Endereço'),
         ),
         default_output_type='text/x-html-safe',
         schemata="Address",
@@ -112,8 +112,8 @@ schema = atapi.Schema((
         widget=atapi.RichWidget
         (
             visible={'view': 'invisible', 'edit': 'invisible'},
-            label=_(u'Referência'),
-            description=_(u'Informe pontos de referência.'),
+            label=_('Referência'),
+            description=_('Informe pontos de referência.'),
         ),
         required=False,
         schemata="Address",

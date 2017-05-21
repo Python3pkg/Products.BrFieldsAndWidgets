@@ -38,19 +38,18 @@ class ValidadorCPF:
         cpf = ''.join([c for c in value if c.isdigit()])
 
         if len(cpf) != 11:
-            return _(u"CPF precisa ter 11 dígitos.")
+            return _("CPF precisa ter 11 dígitos.")
         elif len(cpf)==11:
             vtemp = [int(cpf[:1]) for i in list(cpf)]
             cpf2 = [int(i) for i in list(cpf)]
             if cpf2 == vtemp:
-                return _(u"CPF inválido.")
+                return _("CPF inválido.")
 
             tmp = cpf[:9]
             ltmp = [int(i) for i in list(tmp)]
 
             while len(ltmp) < 11:
-                R = sum(map(lambda(i, v): (len(ltmp)+1-i)*v,
-                                         enumerate(ltmp))) % 11
+                R = sum([(len(ltmp)+1-i_v[0])*i_v[1] for i_v in enumerate(ltmp)]) % 11
 
                 if R > 1:
                     f = 11 - R
@@ -59,12 +58,12 @@ class ValidadorCPF:
                 ltmp.append(f)
 
             if cpf2 != ltmp:
-                return _(u"O dígito verificador do CPF não confere.")
+                return _("O dígito verificador do CPF não confere.")
         return True
 
 
 listValidators.append(ValidadorCPF('isCPF',
-                                   title=_(u'Validator de CPF'),
+                                   title=_('Validator de CPF'),
                                    description=''))
 
 
@@ -87,7 +86,7 @@ class ValidadorCNPJ:
     def __call__(self, value, *args, **kw):
         digits = [int(c) for c in value if c.isdigit()]
         if len(digits) != 14:
-            return _(u"O CNPJ deve ter 14 dígitos.")
+            return _("O CNPJ deve ter 14 dígitos.")
         cnpj = digits[:12]
         prod = [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2]
         while len(cnpj) < 14:
@@ -99,11 +98,11 @@ class ValidadorCNPJ:
             cnpj.append(f)
             prod.insert(0, 6)
         return ((cnpj == digits) and True) or \
-                _(u"O CNPJ informado é inválido.")
+                _("O CNPJ informado é inválido.")
 
 
 listValidators.append(ValidadorCNPJ('isCNPJ',
-                                    title=_(u'Validator de CNPJ'),
+                                    title=_('Validator de CNPJ'),
                                     description=''))
 
 
@@ -129,11 +128,11 @@ class ValidadorCEP:
         cep = ''.join([c for c in value if c.isdigit()])
 
         if not(len(cep)==8):
-            return _(u"O cep informado é inválido.")
+            return _("O cep informado é inválido.")
         return True
 
 listValidators.append(ValidadorCEP('isCEP',
-                                   title=_(u'Validator de CEP'),
+                                   title=_('Validator de CEP'),
                                    description=''))
 
 
@@ -160,7 +159,7 @@ class ValidadorBrPhone:
     def __call__(self, value, *args, **kw):
 
         if value.startswith('+'):
-            return _(u"Telefone inválido")
+            return _("Telefone inválido")
         phone = ''.join([c for c in value if c.isdigit()])
         len_phone = len(phone)
         status = False
@@ -175,7 +174,7 @@ class ValidadorBrPhone:
                 # validate new cellphones
                 status = True
 
-        return status or _(u"Telefone inválido")
+        return status or _("Telefone inválido")
 
     def validate_ddd(self, value):
         util = queryUtility(IVocabularyFactory, 'brasil.ddd')
@@ -197,7 +196,7 @@ class ValidadorBrPhone:
 
 
 listValidators.append(ValidadorBrPhone('isBrPhone',
-                                       title=_(u'Validator de Telefone'),
+                                       title=_('Validator de Telefone'),
                                        description=''))
 
 
